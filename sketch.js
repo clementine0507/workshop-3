@@ -12,7 +12,7 @@ function preload() {
 function setup() {
     createCanvas(1000, 1500);
     background(0);
-    frameRate(0.5);
+    frameRate(100);
     imgs.push(water);
     imgs.push(snow);
     imgs.push(tree);
@@ -21,5 +21,10 @@ function setup() {
 
 function draw() {
     let r = random(imgs);
-    image(r, 0, 0);
+    let x = random(r.width);
+    let y = random(r.height);
+    let c = r.get(int(x), int(y));
+    fill(c);
+    noStroke();
+    rect(x, y, 20, 20);
 }
