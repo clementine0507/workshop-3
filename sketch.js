@@ -1,18 +1,20 @@
 let imgs = [];
 let water, snow, tree, cloud;
+let initialFrameRate = 100;
+let frameRateDecrement = 0.1;
+let minFrameRate = 10;
 
 function preload() {
     water = loadImage('images/water.jpg');
     snow = loadImage('images/snow.jpg');
     tree = loadImage('images/tree.jpg');
     cloud = loadImage('images/cloud.jpg');
-  
 }
 
 function setup() {
     createCanvas(1000, 1500);
     background(0);
-    frameRate(100);
+    frameRate(initialFrameRate);
     imgs.push(water);
     imgs.push(snow);
     imgs.push(tree);
@@ -26,5 +28,7 @@ function draw() {
     let c = r.get(int(x), int(y));
     fill(c);
     noStroke();
-    rect(x, y, 20, 20);
+    circle(x, y, 50);
+    let newFrameRate = Math.max(initialFrameRate - frameRateDecrement * frameCount, minFrameRate);
+    frameRate(newFrameRate);
 }
